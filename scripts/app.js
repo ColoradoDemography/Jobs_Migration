@@ -178,7 +178,7 @@ function getData(lookup,fips) {
  
 }
 
-document.getElementById('downloader').addEventListener("click", function(e) {
+/* document.getElementById('downloader').addEventListener("click", function(e) {
   var canvas = document.querySelector('canvas');
 
   var dataURL = canvas.toDataURL("image/png");
@@ -194,5 +194,15 @@ function downloadImage(data, filename = 'untitled.png') {
   document.body.appendChild(a);
   a.click();
 }
+ */
+
+document.querySelector('button').addEventListener('click', function() {
+  html2canvas(document.querySelector('.specific'), {
+      onrendered: function(canvas) {
+          // document.body.appendChild(canvas);
+        return Canvas2Image.saveAsPNG(canvas);
+      }
+  });
+});
 
 
