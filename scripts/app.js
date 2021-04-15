@@ -1,6 +1,6 @@
 //initialize data
 var bea_url = "https://gis.dola.colorado.gov/lookups/bea_jobs?county="
-var mig_url = "https://gis.dola.colorado.gov/lookups/components?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018&county="
+var mig_url = "https://gis.dola.colorado.gov/lookups/components?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019&county="
 var bea_json = getData(bea_url,0);
 var mig_json = getData(mig_url,0);
 
@@ -47,7 +47,7 @@ jobdata.push(bea_json[0].jobs_2019 - bea_json[0].jobs_2018);
 
 migdata = [];
 var i;
-for (i=0;i<34;i++){
+for (i=0;i<35;i++){
   migdata.push(mig_json[i].netmig);
 }
 /* migdata.push(mig_json[1].netmig);
@@ -61,7 +61,6 @@ selectElem.addEventListener('change', function() {
     mig_json = getData(mig_url,selectElem.value);
     dataset.data = [];
     if (k == 0){
-    console.log("Index0");
       dataset.data.push(bea_json[0].jobs_1985 - bea_json[0].jobs_1984);
       dataset.data.push(bea_json[0].jobs_1986 - bea_json[0].jobs_1985);
       dataset.data.push(bea_json[0].jobs_1987 - bea_json[0].jobs_1986);
@@ -98,9 +97,19 @@ selectElem.addEventListener('change', function() {
       dataset.data.push(bea_json[0].jobs_2018 - bea_json[0].jobs_2017);
       dataset.data.push(bea_json[0].jobs_2019 - bea_json[0].jobs_2018);
     } else {
-      for (i=0;i<34;i++){
-        dataset.data.push(mig_json[i].netmig);
-      }
+      //Broomfield
+      if (selectElem.value == 14){
+        for (j=0;j<16;j++){
+          dataset.data.push(0);
+        }
+        for (i=0;i<20;i++){
+          dataset.data.push(mig_json[i].netmig);
+        }
+      } else{
+        for (i=0;i<35;i++){
+          dataset.data.push(mig_json[i].netmig);
+        }
+      } 
       /* dataset.data.push(mig_json[0].netmig);
       dataset.data.push(mig_json[1].netmig);
       dataset.data.push(mig_json[2].netmig);
@@ -121,7 +130,7 @@ var mixedChartData = {
     type: 'bar', 
     data: jobdata,
     order: 2,
-    backgroundColor: '#890'
+    backgroundColor: '#e6d74f'
   },
   {
     type: 'line', 
@@ -138,7 +147,16 @@ window.onload = function() {
   window.mixedChart = new Chart(ctx, {
       data: mixedChartData,
       options: {
-          scales: {
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          title: {
+            display: true,
+            text: 'Job Change and Net Migration'
+          }
+        }  ,
+        scales: {
               y: {
                   beginAtZero: true
               }
