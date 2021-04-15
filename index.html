@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Jobs and Migration">
+    <meta name="keywords" content="Jobs Migration">
+    <meta name="author" content="Todd Bleess">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Colorado Job Sector Map</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-rc.1/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://rawgit.com/mapshakers/leaflet-control-window/master/src/L.Control.Window.css" />
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76100845-1', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+<!-- 	<div id="summary">
+    	<a href="https://drive.google.com/open?id=1Ag0JdOo8XATTBiNuh80BTiuqLV4Kv72T">Base Analysis Summary</a>
+    </div> -->
+	<div class="ui-widget">
+	  <br />
+	  <select id="sel">
+	    <option value=0 selected>Colorado</option>
+        <option value=1 >Adams</option>
+        <option value=3 >Alamosa</option>
+        <option value=5 >Arapahoe</option>
+	    <option value=7 >Archuleta</option>
+	    <option value=9 >Baca</option>
+	    <option value=11 >Bent</option>
+        <option value=13 >Boulder</option>
+        <option value=14 >Broomfield</option>
+	    <option value=15 >Chaffee</option>
+	    <option value=17 >Cheyenne</option>
+	    <option value=19 >Clear Creek</option>
+	    <option value=21 >Conejos</option>
+	    <option value=23 >Costilla</option>
+	    <option value=25 >Crowley</option>
+	    <option value=27 >Custer</option>
+	    <option value=29 >Delta</option>
+        <option value=31 >Denver</option>
+	    <option value=33 >Dolores</option>
+        <option value=35 >Douglas</option>
+	    <option value=37 >Eagle</option>
+	    <option value=39 >Elbert</option>
+	    <option value=41 >El Paso</option>
+	    <option value=43 >Fremont</option>
+	    <option value=45 >Garfield</option>
+	    <option value=47 >Gilpin</option>
+	    <option value=49 >Grand</option>
+	    <option value=51 >Gunnison</option>
+	    <option value=53 >Hinsdale</option>
+	    <option value=55 >Huerfano</option>
+	    <option value=57 >Jackson</option>
+        <option value=59 >Jefferson</option>
+	    <option value=61 >Kiowa</option>
+	    <option value=63 >Kit Carson</option>
+	    <option value=65 >Lake</option>
+	    <option value=67 >La Plata</option>
+	    <option value=69 >Larimer</option>
+	    <option value=71 >Las Animas</option>
+	    <option value=73 >Lincoln</option>
+	    <option value=75 >Logan</option>
+	    <option value=77 >Mesa</option>
+	    <option value=79 >Mineral</option>
+	    <option value=81 >Moffat</option>
+	    <option value=83 >Montezuma</option>
+	    <option value=85 >Montrose</option>
+	    <option value=87 >Morgan</option>
+	    <option value=89 >Otero</option>
+	    <option value=91 >Ouray</option>
+	    <option value=93 >Park</option>
+	    <option value=95 >Phillips</option>
+	    <option value=97 >Pitkin</option>
+	    <option value=99 >Prowers</option>
+	    <option value=101 >Pueblo</option>
+	    <option value=103 >Rio Blanco</option>
+	    <option value=105 >Rio Grande</option>
+	    <option value=107 >Routt</option>
+	    <option value=109 >Saguache</option>
+	    <option value=111 >San Juan</option>
+	    <option value=113 >San Miguel</option>
+	    <option value=115 >Sedgwick</option>
+	    <option value=117 >Summit</option>
+	    <option value=119 >Teller</option>
+	    <option value=121 >Washington</option>
+	    <option value=123 >Weld</option>
+	    <option value=125 >Yuma</option>
+	    
+	  </select>
+	</div>
+
+	<div id="container" style="width: 100%; height: 100%" >
+		<canvas id="chart" width="800" height="400">
+            <p>Your Browser Does Not Support Canvas</p>
+        </canvas>
+	</div>
+	<div id="other">
+		<p></p> <!-- change based on initial county -->
+	</div>
+	<!--<div id="exportdiv">-->
+ <!--       <button type="button" id="t_download" class="btn" onclick="saveSvgAsPng(document.getElementsByTagName('ctx')[0], 'diagram.png');" tabindex="8" accesskey="i">Download PNG</button>-->
+ <!--   </div>-->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>	
+ <script src="scripts/app.js"></script>
+	
+</body>
+
+
+
+</html>
