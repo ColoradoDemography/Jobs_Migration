@@ -178,6 +178,9 @@ function getData(lookup,fips) {
  
 }
 
-
+var link = document.getElementById('downloader');
+link.setAttribute('download', 'MintyPaper.png');
+link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+link.click()
 
 
