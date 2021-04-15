@@ -178,9 +178,21 @@ function getData(lookup,fips) {
  
 }
 
-var link = document.getElementById('downloader');
-link.setAttribute('download', 'MintyPaper.png');
-link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
-link.click()
+document.getElementById('downloader').addEventListener("click", function(e) {
+  var canvas = document.querySelector('canvas');
+
+  var dataURL = canvas.toDataURL("image/png");
+
+  downloadImage(dataURL, 'chart.png');
+});
+
+// Save | Download image
+function downloadImage(data, filename = 'untitled.png') {
+  var a = document.createElement('a');
+  a.href = data;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+}
 
 
