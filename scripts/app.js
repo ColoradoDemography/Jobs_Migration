@@ -137,7 +137,7 @@ var mixedChartData = {
     label: 'Net Migration',
     data: migdata,
     order: 1,
-    backgroundColor: '#166',
+    backgroundColor: '#000',
     pointRadius: 5
   }]
 }
