@@ -124,20 +124,21 @@ selectElem.addEventListener('change', function() {
 
 
 var mixedChartData = {
-  labels: ["1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"],
+  labels: ["1985", "", "", "", "", "1990", "", "", "", "", "1995", "", "", "", "", "2000", "", "", "", "", "2005", "", "", "", "", "2010", "", "", "", "", "2015", "", "", "", "2019"],
   datasets: [{
     label: 'Job Change',
     type: 'bar', 
     data: jobdata,
     order: 2,
-    backgroundColor: '#e6d74f'
+    backgroundColor: '#1f78b4'
   },
   {
     type: 'line', 
     label: 'Net Migration',
     data: migdata,
     order: 1,
-    backgroundColor: '#166'
+    backgroundColor: '#166',
+    pointRadius: 5
   }]
 }
 
