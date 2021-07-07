@@ -4,10 +4,10 @@ var mig_url = "https://gis.dola.colorado.gov/lookups/components?vars=netmigratio
 var bea_json = getData(bea_url,0);
 var mig_json = getData(mig_url,0);
 
-console.log(bea_json);
-console.log(mig_json);
+//console.log(bea_json);
+//console.log(mig_json);
 
-jobdata = [];
+var jobdata = [];
 jobdata.push(bea_json[0].jobs_1985 - bea_json[0].jobs_1984);
 jobdata.push(bea_json[0].jobs_1986 - bea_json[0].jobs_1985);
 jobdata.push(bea_json[0].jobs_1987 - bea_json[0].jobs_1986);
@@ -45,17 +45,18 @@ jobdata.push(bea_json[0].jobs_2018 - bea_json[0].jobs_2017);
 jobdata.push(bea_json[0].jobs_2019 - bea_json[0].jobs_2018);
 
 
-migdata = [];
+var migdata = [];
 var i;
 for (i=0;i<35;i++){
   migdata.push(mig_json[i].netmig);
 }
-/* migdata.push(mig_json[1].netmig);
-migdata.push(mig_json[2].netmig);
-migdata.push(mig_json[3].netmig); */
+
+var countyname = "Colorado";
 
 var selectElem = document.getElementById('sel');
 selectElem.addEventListener('change', function() {
+  countyname = selectElem.options[selectElem.selectedIndex].text;
+  chartTitle.text = 'Job Change and Net Migration - ' + countyname;
   mixedChartData.datasets.forEach(function(dataset,k) { 
     bea_json = getData(bea_url,selectElem.value);
     mig_json = getData(mig_url,selectElem.value);
@@ -110,18 +111,18 @@ selectElem.addEventListener('change', function() {
           dataset.data.push(mig_json[i].netmig);
         }
       } 
-      /* dataset.data.push(mig_json[0].netmig);
-      dataset.data.push(mig_json[1].netmig);
-      dataset.data.push(mig_json[2].netmig);
-      dataset.data.push(mig_json[3].netmig); */
     }
 
   });
+
   window.mixedChart.update();
 
 });
 
-
+var chartTitle = {
+  display: true,
+  text: 'Job Change and Net Migration - ' + countyname
+}
 
 var mixedChartData = {
   labels: ["1985", "", "", "", "", "1990", "", "", "", "", "1995", "", "", "", "", "2000", "", "", "", "", "2005", "", "", "", "", "2010", "", "", "", "", "2015", "", "", "", "2019"],
@@ -152,10 +153,7 @@ window.onload = function() {
           legend: {
             position: 'bottom'
           },
-          title: {
-            display: true,
-            text: 'Job Change and Net Migration'
-          }
+          title: chartTitle
         }  ,
         scales: {
               y: {
@@ -179,31 +177,22 @@ function getData(lookup,fips) {
  
 }
 
-/* document.getElementById('downloader').addEventListener("click", function(e) {
-  var canvas = document.querySelector('canvas');
+const cvs = document.getElementById("chart");
+const ctx = cvs.getContext("2d");
+const dpr = window.devicePixelRatio;
+console.log(dpr);
+const dpi = 300;
+let width = 2.5;
+let height = 1.5;
+cvs.width = width * dpi * dpr;
+cvs.height = height * dpi * dpr;
+ctx.scale(dpr, dpr);
 
-  var dataURL = canvas.toDataURL("image/png");
-
-  downloadImage(dataURL, 'chart.png');
-});
-
-// Save | Download image
-function downloadImage(data, filename = 'untitled.png') {
-  var a = document.createElement('a');
-  a.href = data;
-  a.download = filename;
-  document.body.appendChild(a);
+function download() {
+  const downloadUrl = cvs.toDataURL();
+  const a = document.createElement("a");
+  a.href = downloadUrl;
+  a.setAttribute("download", "Job_Migration");
   a.click();
 }
- */
-
-document.querySelector('button').addEventListener('click', function() {
-  html2canvas(document.querySelector('.specific'), {
-      onrendered: function(canvas) {
-          // document.body.appendChild(canvas);
-        return Canvas2Image.saveAsPNG(canvas);
-      }
-  });
-});
-
 
