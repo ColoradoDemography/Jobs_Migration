@@ -1,5 +1,7 @@
 canvas{
     background-color: #FFF;
+    width: 750px;
+    height: 450px;
 }
 
 .btn {
