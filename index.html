@@ -102,14 +102,10 @@
 	<!-- <a href="#" id="downloader" onclick="download()">Download Chart</a> -->
 	
 	<div id="container" style="width: 75%; height: 75%" >
-		<canvas id="chart" width="750" height="450">
+		<canvas id="chart" width="750px" height="450px">
             <p>Your Browser Does Not Support Canvas</p>
         </canvas>
-		<!--<div class="specific">
-			
-			<button type="button" class="btn btn-default">Take a Screenshot!</button>
-			
-		  </div> -->
+		<input id="clickMe" type="button" value="Create PNG" onclick="download();" />
 	</div>
 	<div id="other">
 		<p></p> <!-- change based on initial county -->
@@ -124,8 +120,6 @@
  <!--   </div>-->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>	
- <script src="scripts/canvas2image.js"></script>
- <script src="scripts/html2canvas.min.js"></script>
  <script src="scripts/app.js"></script>
 	
 </body>
