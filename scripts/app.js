@@ -121,7 +121,11 @@ selectElem.addEventListener('change', function() {
 
 var chartTitle = {
   display: true,
-  text: 'Job Change and Net Migration - ' + countyname
+  text: 'Job Change and Net Migration - ' + countyname,
+  font: {
+    size: 16,
+    weight: 'bold'
+  }
 }
 
 var mixedChartData = {
@@ -157,7 +161,12 @@ window.onload = function() {
         }  ,
         scales: {
               y: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  ticks:{
+                    font: {
+                      weight: 'bold'
+                    }
+                  }
               }
           }
       }
