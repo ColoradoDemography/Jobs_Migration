@@ -114,7 +114,7 @@ selectElem.addEventListener('change', function() {
           dataset.data.push(mig_json[i].netmig);
         }
       } else{
-        for (i=0;i<35;i++){
+        for (i=0;i<36;i++){ //And increment this each year
           dataset.data.push(mig_json[i].netmig);
         }
       } 
