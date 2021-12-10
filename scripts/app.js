@@ -49,7 +49,7 @@ jobdata.push(bea_json[0].jobs_2020 - bea_json[0].jobs_2019);
 
 var migdata = [];
 var i;
-for (i=0;i<35;i++){
+for (i=0;i<36;i++){ //change this for number of years
   migdata.push(mig_json[i].netmig);
 }
 
