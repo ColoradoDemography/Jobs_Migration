@@ -1,7 +1,7 @@
 //initialize data
 var bea_url = "https://gis.dola.colorado.gov/lookups/bea_jobs?county="
-var mig_url = "https://gis.dola.colorado.gov/lookups/components?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020&county="
-var mig_reg_url = "https://gis.dola.colorado.gov/lookups/components_region?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020&reg_num="
+var mig_url = "https://gis.dola.colorado.gov/lookups/components?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021&county="
+var mig_reg_url = "https://gis.dola.colorado.gov/lookups/components_region?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021&reg_num="
 var bea_json = getData(bea_url,0);
 var mig_json = getData(mig_url,0);
 
@@ -45,11 +45,12 @@ jobdata.push(bea_json[0].jobs_2017 - bea_json[0].jobs_2016);
 jobdata.push(bea_json[0].jobs_2018 - bea_json[0].jobs_2017);
 jobdata.push(bea_json[0].jobs_2019 - bea_json[0].jobs_2018);
 jobdata.push(bea_json[0].jobs_2020 - bea_json[0].jobs_2019);
+jobdata.push(bea_json[0].jobs_2021 - bea_json[0].jobs_2020);
 
 
 var migdata = [];
 var i;
-for (i=0;i<36;i++){ //change this for number of years
+for (i=0;i<37;i++){ //change this for number of years
   migdata.push(mig_json[i].netmig);
 }
 
@@ -104,17 +105,18 @@ selectElem.addEventListener('change', function() {
       dataset.data.push(bea_json[0].jobs_2018 - bea_json[0].jobs_2017);
       dataset.data.push(bea_json[0].jobs_2019 - bea_json[0].jobs_2018);
       dataset.data.push(bea_json[0].jobs_2020 - bea_json[0].jobs_2019);
+      dataset.data.push(bea_json[0].jobs_2021 - bea_json[0].jobs_2020);
     } else {
       //Broomfield
       if (selectElem.value == 14){
         for (j=0;j<16;j++){
           dataset.data.push(0);
         }
-        for (i=0;i<20;i++){
+        for (i=0;i<21;i++){
           dataset.data.push(mig_json[i].netmig);
         }
       } else{
-        for (i=0;i<36;i++){ //And increment this each year
+        for (i=0;i<37;i++){ //And increment this each year
           dataset.data.push(mig_json[i].netmig);
         }
       } 
@@ -136,7 +138,7 @@ var chartTitle = {
 }
 
 var mixedChartData = {
-  labels: ["1985", "", "", "", "", "1990", "", "", "", "", "1995", "", "", "", "", "2000", "", "", "", "", "2005", "", "", "", "", "2010", "", "", "", "", "2015", "", "", "", "", "2020"],
+  labels: ["1985", "", "", "", "", "1990", "", "", "", "", "1995", "", "", "", "", "2000", "", "", "", "", "2005", "", "", "", "", "2010", "", "", "", "", "2015", "", "", "", "", "2020", "2021"],
   datasets: [{
     label: 'Job Change',
     type: 'bar', 
